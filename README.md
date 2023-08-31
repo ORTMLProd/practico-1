@@ -2,10 +2,10 @@
 
 En este práctico abordaremos algunos conceptos básicos sobre: 
 
-- Git 
-- Docker
-- Manejo de dependencias en Python con pip-tools
-- Web Scraping con Scrapy
+- [Git ](#git)
+- [Docker](#docker)
+- [Manejo de dependencias en Python con pip-tools](#dependencias-en-python)
+- [Web Scraping con Scrapy](#web-scraping-con-scrapy)
 
 # Git
 
@@ -146,7 +146,7 @@ Puedes usar el dashboard para ver tus contenedores, imagenes y volumenes
 
 4. **Puerto de escucha:** Si tu aplicación escucha en un puerto específico, asegúrate de exponer ese puerto al contenedor Docker. Puedes hacer esto utilizando el argumento -p del comando docker run. Por ejemplo, docker run -p 8080:8080 nombre_de_la_imagen expondrá el puerto 8080 del contenedor al puerto 8080 del host. Sino, por defecto se asigna el puerto 3000
 
-# Dependencias de Python
+# Dependencias en Python
 
 Las dependencias de Python son módulos o bibliotecas que una aplicación de Python utiliza para su correcto funcionamiento. 
 
@@ -168,14 +168,14 @@ Por ejemplo, `requests==2.26.0` especifica la biblioteca Requests en la versión
 
 El archivo `requirements.txt` lo podemos crear manualmente, pero lo ideal sería utilizar una herramienta que nos lo genere automáticamente considerando todas las dependencias y las restricciones de los paquetes que queremos usar. En la siguiente sección comentamos pip-tools y poetry. 
 
-## Herramientas para el manejor de dependencias en Python (pip-tools, poetry)
+## Herramientas para manejar dependencias en Python (pip-tools, poetry)
 
 Las principales herramientas para el manejod de dependencias en Python son pip-tools y poetry. 
 En este práctico usamos [`pip-tools`](https://pip-tools.readthedocs.io/en/latest/).
 
 ## Web Scraping con Scrapy
 
-Usamos [Scrapy](https://docs.scrapy.org/en/latest/) para construir la spider que va a recorrer el sitio del Gallito para extraer los datos de las propiedades.
+Usamos [Scrapy](https://docs.scrapy.org/en/latest/) para construir la spider que va a recorrer el sitio de ejemplo _Quotes to Scrape_ para extraer datos de frases famosas.
 
 Dentro de la documentación de Scrapy, les será útil revisar las entradas sobre:
 * instalación

@@ -1,11 +1,14 @@
-FROM python:3.9
+# imagen base
+FROM python:3.9.6
 
-WORKDIR /app
+# crea y fija directorio de trabajo
+WORKDIR /scrapers
 
-COPY requirements.txt .
+# copia todo hacia el contenedor
+COPY . .
 
-RUN pip install --no-cache-dir -r requirements.txt
+# instala las dependencias de nuestro proyecto
+RUN pip install -r requirements.txt
 
-COPY scraper.py .
-
-CMD ["python", "scraper.py"]
+# ejecuta bash para usar la línea de comandos
+CMD ["bash"]

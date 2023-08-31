@@ -4,9 +4,8 @@ En este práctico abordaremos algunos conceptos básicos sobre:
 
 - Git 
 - Docker
-- Dependencias en Python
-- Ejemplo
-- Conectarte a Azure Cloud mediante CLI
+- Manejo de dependencias en Python con pip-tools
+- Web Scraping con Scrapy
 
 # Git
 
@@ -28,11 +27,11 @@ Un repositorio Git es el lugar donde se almacena el código fuente de tu proyect
 
 *   **git init**: para crear un nuevo repositorio en una carpeta vacía.
 *   **git clone**: para clonar un repositorio existente desde un repositorio remoto.
+* **git status**: informa si estas up to date o tienes cambios por subir. 
 *   **git add**: para agregar los cambios en tu código al área de preparación.
 *   **git commit**: para guardar los cambios en tu repositorio local junto con un * mensaje descriptivo.
 * **git push**: para enviar los cambios guardados en tu repositorio local al repositorio remoto.
 * **git pull**: para actualizar tu repositorio local con los cambios realizados en el repositorio remoto.
-* **git status**: informa si estas up to date o tienes cambios por subir. 
 
 Además Git permite trabajar con ramas **(branch)** para poder trabajar features por separado sin afectar el trabajo comun de la rama principal. **(main)**
 
@@ -127,11 +126,11 @@ Familiarízate con los conceptos básicos de Docker, como imágenes, contenedore
 
 
 2. Ejecuta el comando **docker build** para construir la imagen. 
-El comando docker build toma como argumento la ruta al directorio que contiene el archivo Dockerfile. Ejemplo: `docker build -t web_scraper:latest .`
+El comando docker build toma como argumento la ruta al directorio que contiene el archivo Dockerfile. Ejemplo: `docker build -t web_scraper .`
 
 3. Ejecuta el comando **docker run** y especifica la imagen que deseas utilizar. 
   El argumento `-rm` del comando docker run indica a Docker que elimine automáticamente el contenedor después de que se detenga.
-  Ejemplo: `docker run --rm web_scraper:latest`
+  Ejemplo: `docker run --rm web_scraper`
 
 Puedes usar el dashboard para ver tus contenedores, imagenes y volumenes 
 
@@ -167,21 +166,21 @@ Bibliotecas de Python: Se enumeran las bibliotecas de terceros que se utilizan e
 
 Por ejemplo, `requests==2.26.0` especifica la biblioteca Requests en la versión 2.26.0. y `requests`, no especifica la versión. 
 
-# Conectarte a Azure desde tu entorno local. 
+El archivo `requirements.txt` lo podemos crear manualmente, pero lo ideal sería utilizar una herramienta que nos lo genere automáticamente considerando todas las dependencias y las restricciones de los paquetes que queremos usar. En la siguiente sección comentamos pip-tools y poetry. 
 
-1.   Abre una terminal en tu máquina local.
+## Herramientas para el manejor de dependencias en Python (pip-tools, poetry)
 
-2.   Instala el CLI de Azure siguiendo las instrucciones que se encuentran en la documentación oficial: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli
+Las principales herramientas para el manejod de dependencias en Python son pip-tools y poetry. 
+En este práctico usamos [`pip-tools`](https://pip-tools.readthedocs.io/en/latest/).
 
-3. Después de instalar el CLI de Azure, ejecuta el siguiente comando en la terminal para iniciar sesión en tu cuenta de Azure:  `az login --use-device-code`
+## Web Scraping con Scrapy
 
-   **Para Mac:** `brew update && brew install azure-cli`
+Usamos [Scrapy](https://docs.scrapy.org/en/latest/) para construir la spider que va a recorrer el sitio del Gallito para extraer los datos de las propiedades.
 
-   **Para Windows:** [Windows Installer](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
-
-   **Para Linux:** [Linux Installer](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
-)
-
-  El comando `az login --use-device-code` abrirá una ventana de tu navegador predeterminado y te pedirá que inicies sesión en tu cuenta de Azure. 
-
-Luego de eso te habras autenticado correctamente con **AzureCloud**
+Dentro de la documentación de Scrapy, les será útil revisar las entradas sobre:
+* instalación
+* [spiders](https://docs.scrapy.org/en/latest/topics/spiders.html), en especial la [CrawlSpider](https://docs.scrapy.org/en/latest/topics/spiders.html#crawlspider) y sus [Rules](https://docs.scrapy.org/en/latest/topics/spiders.html#crawling-rules)
+* [link extractors](https://docs.scrapy.org/en/latest/topics/link-extractors.html)
+* callbacks
+* CSS [selectors](https://docs.scrapy.org/en/latest/topics/selectors.html)
+* [Item Pipeline](https://docs.scrapy.org/en/latest/topics/item-pipeline.html), por ejemplo para descargar archivos o imágenes con una [MediaPipeline](https://docs.scrapy.org/en/latest/topics/media-pipeline.html) como la ImagesPipeline.
